@@ -1,0 +1,44 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Build & Preview
+# Controls when the workflow will run
+on:
+  pull_request:
+    branches: [ master ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build_and_preview:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+      - name: Use Node.js 15.x
+        uses: actions/setup-node@v2
+        with:
+          node-version: 15.x
+      - name: Run npm ci, build
+        run: |
+          npm ci
+          npm run build --if-present
+      - name: Deploy to GitHub Pages
+        if: success()
+        uses: crazy-max/ghaction-github-pages@v2
+        with:
+          target_branch: gh-pages
+          build_dir: build
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - uses: github-actions-up-and-running/pr-comment@v1.0.1
+        with:
+          # GITHUB_TOKEN secret
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          # Message to comment
+          message: Your preview is available at https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}
