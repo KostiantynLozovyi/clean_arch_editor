@@ -1,7 +1,9 @@
-import ReactDOM from "react-dom/client";
-import { EditorStaticExample } from "./components";
-import "./index.css";
+import ReactDOM from 'react-dom/client';
 
-const root = ReactDOM.createRoot(document.getElementById("root")!);
+import { App }  from '@adapters/views/App';
 
-root.render(<EditorStaticExample />);
+import './index.css';
+
+const root = ReactDOM.createRoot(document.querySelector('#root')!);
+
+root.render(<App />);
