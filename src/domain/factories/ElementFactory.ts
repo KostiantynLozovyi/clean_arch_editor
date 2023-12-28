@@ -7,7 +7,7 @@ import {
 import { IdGenerator }                            from '@utility/id/IdGenerator';
 
 import type { ElementKinds }                      from '@domain/enums/ElementsKinds';
-import type { ElementFactory as IElementFactory } from '@domain/interfaces/usecases/ElementFactory';
+import type { ElementFactory as IElementFactory } from '@domain/factories/ElementFactory.interface';
 import type { Element }                           from '@domain/entities/Element';
 
 type ElementMap<T extends ElementKinds> = {
