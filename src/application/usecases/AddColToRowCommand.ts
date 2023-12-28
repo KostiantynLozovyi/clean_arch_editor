@@ -1,7 +1,7 @@
 import { ElementFactory } from '@application/services';
 import { ElementKinds }   from '@domain/enums/ElementsKinds';
 
-import type { Row }       from '@domain/entities';
+import type { Row }       from '@domain/aggregates';
 import type { Command }   from '@domain/interfaces/usecases/Command';
 
 export class AddColToRowCommand implements Command {

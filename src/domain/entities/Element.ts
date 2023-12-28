@@ -1,3 +1,4 @@
+import type { ElementKinds }   from '@domain/enums/ElementsKinds';
 import type { IdGenerator }    from '@utility/id/IdGenerator';
 import type { ElementVisitor } from '../interfaces/usecases/ElementVisitor';
 
@@ -6,8 +7,14 @@ export abstract class Element<Content> {
 	protected content!: Content;
 	protected parentId: number | null = null;
 
+	protected abstract readonly kind: ElementKinds;
+
 	constructor(protected idGenerator: IdGenerator) {
 		this.id = idGenerator.generate();
+	}
+
+	getKind(): string {
+		return this.kind;
 	}
 
 	setContent(content: Content) {

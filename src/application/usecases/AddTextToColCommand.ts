@@ -1,7 +1,7 @@
 import { ElementFactory } from '@application/services';
 import { ElementKinds }   from '@domain/enums/ElementsKinds';
 
-import type { Column }    from '@domain/entities';
+import type { Column }    from '@domain/aggregates';
 import type { Command }   from '@domain/interfaces/usecases/Command';
 
 export class AddTextToColCommand implements Command {

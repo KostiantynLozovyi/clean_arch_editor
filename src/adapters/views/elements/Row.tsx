@@ -3,13 +3,13 @@ import { Row }                 from '@infrastructure/ui/row';
 
 import { useSelectedElement }  from '../context/SelectedElementContext';
 
-import type { Row as RowType } from '@domain/entities';
+import type { Row as RowType } from '@domain/aggregates';
 
 type RowComponentProps = {
 	row: RowType
 };
 
-function RowComponent(props: RowComponentProps) {
+function RowComponent(props: Readonly<RowComponentProps>) {
 	const { row } = props;
 
 	const { handleSelectElement, isSelectedElement } = useSelectedElement();

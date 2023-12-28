@@ -8,7 +8,8 @@
 		"test": "craco test",
 		"prettify": "prettier --write src",
 		"lint": "eslint .",
-		"lint:fix": "eslint --fix ."
+		"lint:fix": "eslint --fix .",
+		"types": "tsc --noEmit -p ."
 	},
 	"dependencies": {
 		"@types/react": "^18.0.12",

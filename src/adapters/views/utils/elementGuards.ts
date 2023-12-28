@@ -1,9 +1,5 @@
-import {
-	TextBlock,
-	ImageBlock,
-	Column,
-	Row
-} from '@domain/entities';
+import { TextBlock, ImageBlock } from '@domain/entities';
+import { Column, Row }           from '@domain/aggregates';
 
 function isTextBlock(element: any): element is TextBlock {
 	return element instanceof TextBlock;

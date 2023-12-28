@@ -1,10 +1,9 @@
+import { ImageBlock, TextBlock } from '@domain/entities';
 import {
 	Column,
-	ImageBlock,
-	Page,
 	Row,
-	TextBlock
-} from '@domain/entities';
+	Page
+} from '@domain/aggregates';
 import { IdGenerator }                            from '@utility/id/IdGenerator';
 
 import type { ElementKinds }                      from '@domain/enums/ElementsKinds';

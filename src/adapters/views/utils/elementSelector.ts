@@ -1,8 +1,5 @@
-import type {
-	Column,
-	ImageBlock,
-	TextBlock
-} from '@domain/entities';
+import type { ImageBlock, TextBlock } from '@domain/entities';
+import type { Column }                from '@domain/aggregates';
 
 // leaf block is ImageBlock | TextBlock and this element always
 // located in column

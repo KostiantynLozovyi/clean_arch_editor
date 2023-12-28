@@ -7,15 +7,14 @@ import {
 	AddTextToColCommand,
 	AddImageToColCommand
 } from '@application/usecases';
-import { isColumn } from '@adapters/views/utils/elementGuards';
+import { isColumn }                   from '@adapters/views/utils/elementGuards';
 
+import type { ImageBlock, TextBlock } from '@domain/entities';
 import type {
 	Column,
-	ImageBlock,
-	TextBlock,
 	Row,
 	Page
-} from '@domain/entities';
+} from '@domain/aggregates';
 import type { ElementSearcher }        from '@application/services';
 import type { TextContent }            from '@domain/entities/TextBlock';
 import type { ElementStateRepository } from '@domain/interfaces/repository/ElementStateRepository';

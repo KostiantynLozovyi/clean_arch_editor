@@ -1,15 +1,12 @@
-import { Column }              from '@infrastructure/ui/column';
+import { Column }                     from '@infrastructure/ui/column';
 
-import { isTextBlock }         from '../utils/elementGuards';
-import { useSelectedElement }  from '../context/SelectedElementContext';
-import { ImageBlockComponent } from './ImageBlock';
-import { TextBlockComponent }  from './TextBlock';
+import { isTextBlock }                from '../utils/elementGuards';
+import { useSelectedElement }         from '../context/SelectedElementContext';
+import { ImageBlockComponent }        from './ImageBlock';
+import { TextBlockComponent }         from './TextBlock';
 
-import type {
-	TextBlock,
-	ImageBlock,
-	Column as ColumnType
-} from '@domain/entities';
+import type { TextBlock, ImageBlock } from '@domain/entities';
+import type { Column as ColumnType }  from '@domain/aggregates';
 
 type ColumnComponentProps = {
 	col: ColumnType

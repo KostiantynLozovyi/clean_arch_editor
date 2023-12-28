@@ -1,4 +1,4 @@
-import type { Page }                   from '@domain/entities';
+import type { Page }                   from '@domain/aggregates';
 import type { ElementSerializer }      from '@adapters/serializers/ElementSerializer';
 import type { ElementStateRepository } from '@domain/interfaces/repository/ElementStateRepository';
 

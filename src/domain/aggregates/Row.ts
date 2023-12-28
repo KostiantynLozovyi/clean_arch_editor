@@ -1,9 +1,12 @@
-import { Element }             from './Element';
+import { ElementKinds }        from '@domain/enums/ElementsKinds';
+
+import { Element }             from '../entities/Element';
 
 import type { Column }         from './Column';
 import type { ElementVisitor } from '../interfaces/usecases/ElementVisitor';
 
 export class Row extends Element<Column[]> {
+	protected readonly kind = ElementKinds.Row;
 	protected override content: Column[] = [];
 
 	addColumn(column: Column): void {

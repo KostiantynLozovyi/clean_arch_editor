@@ -1,9 +1,12 @@
-import { Element }             from './Element';
+import { ElementKinds }        from '@domain/enums/ElementsKinds';
+
+import { Element }             from '../entities/Element';
 
 import type { ElementVisitor } from '../interfaces/usecases/ElementVisitor';
 import type { Row }            from './Row';
 
 export class Page extends Element<Row[]> {
+	protected readonly kind = ElementKinds.Page;
 	protected override content: Row[] = [];
 
 	addRow(row: Row): void {

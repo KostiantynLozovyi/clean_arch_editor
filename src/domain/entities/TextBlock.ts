@@ -1,3 +1,5 @@
+import { ElementKinds }        from '@domain/enums/ElementsKinds';
+
 import { Element }             from './Element';
 
 import type { IdGenerator }    from '@utility/id/IdGenerator';
@@ -9,6 +11,8 @@ export type TextContent = {
 };
 
 export class TextBlock extends Element<TextContent> {
+	protected readonly kind = ElementKinds.TextBlock;
+
 	constructor(idGenerator: IdGenerator) {
 		super(idGenerator);
 		this.content = {

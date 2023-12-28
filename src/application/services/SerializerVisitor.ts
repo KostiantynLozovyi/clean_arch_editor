@@ -4,8 +4,8 @@ import type {
 	Column,
 	Page,
 	Row
-} from '@domain/entities';
-import type { ColumnBlock }    from '@domain/entities/Column';
+} from '@domain/aggregates';
+import type { ColumnBlock }    from '@domain/aggregates/Column';
 import type { ElementVisitor } from '@domain/interfaces/usecases/ElementVisitor';
 
 type SerializedObject = {

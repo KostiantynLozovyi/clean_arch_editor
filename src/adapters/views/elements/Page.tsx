@@ -2,7 +2,7 @@ import { Stage }        from '@infrastructure/ui/stage';
 
 import { RowComponent } from './Row';
 
-import type { Page }    from '@domain/entities';
+import type { Page }    from '@domain/aggregates';
 
 type PageComponentProps = {
 	page: Page

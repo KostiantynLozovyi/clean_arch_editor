@@ -13,7 +13,7 @@ import type {
 	PropsWithChildren
 } from 'react';
 import type { ElementSearcher }        from '@application/services';
-import type { Page }                   from '@domain/entities';
+import type { Page }                   from '@domain/aggregates';
 import type { ElementStateRepository } from '@domain/interfaces/repository/ElementStateRepository';
 
 type EditorHandlerContextType = {
