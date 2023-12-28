@@ -43,32 +43,18 @@ export class EditorInvoker {
 		return newElementId;
 	}
 
-	addCol(rowId: number) {
-		const rowOrCol = this.searcher.findElementById<Row>(this.page, rowId);
+	addCol(elementId: number) {
+		const element = this.searcher.findElementById<Row | Column>(this.page, elementId);
 
-		if (isColumn(rowOrCol)) {
-			const parent       = this.searcher.findElementById<Row>(
-				this.page,
-				rowOrCol.getParentId()
-			);
-			const command      = new AddColToRowCommand(parent!);
-			const newElementId = command.execute();
-
-			this.saveAndRefresh();
-
-			return newElementId;
+		if (!element?.getParentId()) {
+			return null;
 		}
 
-		if (rowOrCol) {
-			const command      = new AddColToRowCommand(rowOrCol);
-			const newElementId = command.execute();
+		const targetRow = isColumn(element)
+			? this.searcher.findElementById<Row>(this.page, element.getParentId())!
+			: element;
 
-			this.saveAndRefresh();
-
-			return newElementId;
-		}
-
-		return null;
+		return this.addColToRow(targetRow);
 	}
 
 	addText(colId: number) {
@@ -130,6 +116,15 @@ export class EditorInvoker {
 
 			this.saveAndRefresh();
 		}
+	}
+
+	private addColToRow(row: Row) {
+		const command      = new AddColToRowCommand(row);
+		const newElementId = command.execute();
+
+		this.saveAndRefresh();
+
+		return newElementId;
 	}
 
 	private saveAndRefresh() {
