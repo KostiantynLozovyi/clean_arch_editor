@@ -6,7 +6,7 @@ import {
 	InputTextCommand,
 	AddTextToColCommand,
 	AddImageToColCommand
-} from '@application/usecases';
+} from '@application/interactors';
 import { isColumn }                   from '@adapters/views/utils/elementGuards';
 
 import type { ImageBlock, TextBlock } from '@domain/entities';
