@@ -1,18 +1,19 @@
-import { useState }                        from 'react';
+import { useState }                     from 'react';
 
-import { ElementFactory, ElementSearcher } from '@application/services';
-import { ElementKinds }                    from '@domain/enums/ElementsKinds';
-import { LocalStorageAdapter }             from '@infrastructure/storage/LocalStorageAdapter';
-import { ElementSerializer }               from '@adapters/serializers/ElementSerializer';
+import { LocalStorageGateway }          from '@adapters/gateways/LocalStorageGateway';
+import { ElementSearcher }              from '@application/services';
+import { ElementKinds }                 from '@domain/enums/ElementsKinds';
+import { ElementSerializer }            from '@adapters/serializers/ElementSerializer';
+import { ElementFactory }               from '@domain/factories';
 
-import { SelectedElementProvider }         from './context/SelectedElementContext';
-import { EditorHandlerContextProvider }    from './context/EditorHandlerContext';
-import { ToolBar }                         from './ToolBar';
-import { Editor }                          from './Editor';
+import { SelectedElementProvider }      from './context/SelectedElementContext';
+import { EditorHandlerContextProvider } from './context/EditorHandlerContext';
+import { ToolBar }                      from './ToolBar';
+import { Editor }                       from './Editor';
 
-import type { Page }                       from '@domain/aggregates';
+import type { Page }                    from '@domain/aggregates';
 
-const elementsRepository = new LocalStorageAdapter(new ElementSerializer());
+const elementsRepository = new LocalStorageGateway(new ElementSerializer());
 
 function preparePage() {
 	const persistentPage = elementsRepository.load();

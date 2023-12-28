@@ -1,7 +1,8 @@
-import { SerializerVisitor, ElementFactory } from '@application/services';
+import { SerializerVisitor } from '@application/services';
+import { ElementFactory }    from '@domain/factories/ElementFactory';
 
-import type { ElementKinds }                 from '@domain/enums/ElementsKinds';
-import type { Element }                      from '@domain/entities/Element';
+import type { ElementKinds } from '@domain/enums/ElementsKinds';
+import type { Element }      from '@domain/entities/Element';
 
 export class ElementSerializer {
 	private visitor = new SerializerVisitor();

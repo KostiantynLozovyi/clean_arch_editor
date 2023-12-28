@@ -1,4 +1,4 @@
-import { ElementFactory } from '@application/services';
+import { ElementFactory } from '@domain/factories';
 import { ElementKinds }   from '@domain/enums/ElementsKinds';
 
 import type { Page }      from '@domain/aggregates';
