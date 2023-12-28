@@ -8,7 +8,7 @@ import type { ElementVisitor } from '../interfaces/usecases/ElementVisitor';
 type Content = string | null;
 
 export class ImageBlock extends Element<Content> {
-	protected readonly kind = ColumnChildKinds.ImageBlock;
+	protected override readonly kind = ColumnChildKinds.ImageBlock;
 
 	constructor(idGenerator: IdGenerator) {
 		super(idGenerator);
@@ -16,11 +16,11 @@ export class ImageBlock extends Element<Content> {
 		this.content = null;
 	}
 
-	removeContent(): void {
+	override removeContent(): void {
 		this.content = null;
 	}
 
-	accept<ReturnType>(visitor: ElementVisitor<ReturnType>): ReturnType {
+	override accept<ReturnType>(visitor: ElementVisitor<ReturnType>): ReturnType {
 		return visitor.visitImageBlock(this);
 	}
 }

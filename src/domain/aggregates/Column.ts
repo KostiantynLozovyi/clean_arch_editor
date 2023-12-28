@@ -12,13 +12,13 @@ import type { ElementVisitor } from '../interfaces/usecases/ElementVisitor';
 export type ColumnBlock = ImageBlock | TextBlock | DraftBlock;
 
 export class Column extends Element<ColumnBlock | null> {
-	protected readonly kind = ElementKinds.Column;
+	protected override readonly kind = ElementKinds.Column;
 
-	removeContent(): void {
+	override removeContent(): void {
 		this.content = null;
 	}
 
-	accept<ReturnType>(visitor: ElementVisitor<ReturnType>): ReturnType {
+	override accept<ReturnType>(visitor: ElementVisitor<ReturnType>): ReturnType {
 		return visitor.visitColumn(this);
 	}
 }

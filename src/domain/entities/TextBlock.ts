@@ -11,7 +11,7 @@ export type TextContent = {
 };
 
 export class TextBlock extends Element<TextContent> {
-	protected readonly kind = ColumnChildKinds.TextBlock;
+	protected override readonly kind = ColumnChildKinds.TextBlock;
 
 	constructor(idGenerator: IdGenerator) {
 		super(idGenerator);
@@ -21,7 +21,7 @@ export class TextBlock extends Element<TextContent> {
 		};
 	}
 
-	removeContent(): void {
+	override removeContent(): void {
 		this.content = {
 			text     : null,
 			alignment: 'left'
@@ -44,7 +44,7 @@ export class TextBlock extends Element<TextContent> {
 		this.content.alignment = alignment;
 	}
 
-	accept<ReturnType>(visitor: ElementVisitor<ReturnType>): ReturnType {
+	override accept<ReturnType>(visitor: ElementVisitor<ReturnType>): ReturnType {
 		return visitor.visitTextBlock(this);
 	}
 }

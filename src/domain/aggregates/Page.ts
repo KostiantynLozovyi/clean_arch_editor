@@ -6,7 +6,7 @@ import type { ElementVisitor } from '../interfaces/usecases/ElementVisitor';
 import type { Row }            from './Row';
 
 export class Page extends Element<Row[]> {
-	protected readonly kind = ElementKinds.Page;
+	protected override readonly kind = ElementKinds.Page;
 	protected override content: Row[] = [];
 
 	addRow(row: Row): void {
@@ -21,11 +21,11 @@ export class Page extends Element<Row[]> {
 		}
 	}
 
-	removeContent(): void {
+	override removeContent(): void {
 		this.content = [];
 	}
 
-	accept<ReturnType>(visitor: ElementVisitor<ReturnType>): ReturnType {
+	override accept<ReturnType>(visitor: ElementVisitor<ReturnType>): ReturnType {
 		return visitor.visitPage(this);
 	}
 
