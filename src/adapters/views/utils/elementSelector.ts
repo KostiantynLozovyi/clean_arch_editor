@@ -1,9 +1,9 @@
-import type { ImageBlock, TextBlock } from '@domain/entities';
-import type { Column }                from '@domain/aggregates';
+import type { ColumnBlock } from '@domain/aggregates/Column';
+import type { Column }      from '@domain/aggregates';
 
-// leaf block is ImageBlock | TextBlock and this element always
+// leaf block is ImageBlock | TextBlock | DraftBlock and this element always
 // located in column
-function getLeafBlock<T extends TextBlock | ImageBlock>(col: Column | null): T | null {
+function getLeafBlock<T extends ColumnBlock>(col: Column | null): T | null {
 	return (col?.getContent() ?? null) as T;
 }
 

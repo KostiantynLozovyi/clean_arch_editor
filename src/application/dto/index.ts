@@ -4,3 +4,4 @@ export { SerializedPageDTO } from './serialization/SerializedPageDTO';
 export { SerializedImageBlockDTO } from './serialization/SerializedImageBlockDTO';
 export { SerializedTextBlockDTO } from './serialization/SerializedTextBlockDTO';
 export { SerializedObjectDTO } from './serialization/SerializedObjectDTO';
+export { SerializedDraftBlockDTO } from './serialization/SerializedDraftBlockDTO';

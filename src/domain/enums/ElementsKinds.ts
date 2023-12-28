@@ -3,5 +3,6 @@ export enum ElementKinds {
 	Row = 'Row',
 	Page = 'Page',
 	TextBlock = 'TextBlock',
-	ImageBlock = 'ImageBlock'
+	ImageBlock = 'ImageBlock',
+	DraftBlock = 'DraftBlock'
 }

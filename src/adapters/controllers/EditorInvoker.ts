@@ -5,7 +5,8 @@ import {
 	AddRowToPageCommand,
 	InputTextCommand,
 	AddTextToColCommand,
-	AddImageToColCommand
+	AddImageToColCommand,
+	AddDraftToColCommand
 } from '@application/interactors';
 import { isColumn }                   from '@adapters/views/utils/elementGuards';
 
@@ -122,9 +123,23 @@ export class EditorInvoker {
 		const command      = new AddColToRowCommand(row);
 		const newElementId = command.execute();
 
+		// initialize col with draft block
+		this.addDraftToCol(newElementId);
+
 		this.saveAndRefresh();
 
 		return newElementId;
+	}
+
+	private addDraftToCol(colId: number) {
+		const col = this.searcher.findElementById<Column>(this.page, colId);
+
+		if (col) {
+			const command = new AddDraftToColCommand(col);
+			command.execute();
+
+			this.saveAndRefresh();
+		}
 	}
 
 	private saveAndRefresh() {

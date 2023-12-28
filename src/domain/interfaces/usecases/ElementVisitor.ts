@@ -1,4 +1,8 @@
-import type { ImageBlock, TextBlock } from '@domain/entities';
+import type {
+	DraftBlock,
+	ImageBlock,
+	TextBlock
+} from '@domain/entities';
 import type {
 	Column,
 	Row,
@@ -6,6 +10,7 @@ import type {
 } from '@domain/aggregates';
 
 export interface ElementVisitor<ResultType> {
+	visitDraftBlock(block: DraftBlock): ResultType;
 	visitTextBlock(block: TextBlock): ResultType;
 	visitImageBlock(block: ImageBlock): ResultType;
 	visitColumn(col: Column): ResultType;

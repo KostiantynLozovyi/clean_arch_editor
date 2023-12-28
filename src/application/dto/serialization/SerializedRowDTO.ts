@@ -1,5 +1,5 @@
-import { SerializedColumnDTO } from '@application/dto/serialization/SerializedColumnDTO';
-import { SerializedObjectDTO } from '@application/dto/serialization/SerializedObjectDTO';
+import { SerializedColumnDTO } from './SerializedColumnDTO';
+import { SerializedObjectDTO } from './SerializedObjectDTO';
 
 import type { Row }            from '@domain/aggregates';
 

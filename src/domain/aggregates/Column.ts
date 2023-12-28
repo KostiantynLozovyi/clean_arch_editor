@@ -1,12 +1,15 @@
-import { ElementKinds }        from '@domain/enums/ElementsKinds';
+import { ElementKinds } from '@domain/enums/ElementsKinds';
 
-import { Element }             from '../entities/Element';
+import { Element }      from '../entities/Element';
 
+import type {
+	DraftBlock,
+	ImageBlock,
+	TextBlock
+} from '../entities';
 import type { ElementVisitor } from '../interfaces/usecases/ElementVisitor';
-import type { ImageBlock }     from '../entities/ImageBlock';
-import type { TextBlock }      from '../entities/TextBlock';
 
-export type ColumnBlock = ImageBlock | TextBlock;
+export type ColumnBlock = ImageBlock | TextBlock | DraftBlock;
 
 export class Column extends Element<ColumnBlock | null> {
 	protected readonly kind = ElementKinds.Column;

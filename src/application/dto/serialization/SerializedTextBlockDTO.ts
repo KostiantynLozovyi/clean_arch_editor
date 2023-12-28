@@ -1,4 +1,4 @@
-import { SerializedObjectDTO } from '@application/dto/serialization/SerializedObjectDTO';
+import { SerializedObjectDTO } from './SerializedObjectDTO';
 
 import type { TextBlock }      from '@domain/entities';
 

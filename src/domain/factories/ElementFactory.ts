@@ -1,4 +1,8 @@
-import { ImageBlock, TextBlock } from '@domain/entities';
+import {
+	ImageBlock,
+	TextBlock,
+	DraftBlock
+} from '@domain/entities';
 import {
 	Column,
 	Row,
@@ -15,7 +19,8 @@ type ElementMap<T extends ElementKinds> = {
 	Row: Row,
 	Page: Page,
 	TextBlock: TextBlock,
-	ImageBlock: ImageBlock
+	ImageBlock: ImageBlock,
+	DraftBlock: DraftBlock
 }[T];
 
 export class ElementFactory implements IElementFactory {
@@ -42,6 +47,10 @@ export class ElementFactory implements IElementFactory {
 			}
 			case 'Page': {
 				element = new Page(idGenerator);
+				break;
+			}
+			case 'DraftBlock': {
+				element = new DraftBlock(idGenerator);
 				break;
 			}
 

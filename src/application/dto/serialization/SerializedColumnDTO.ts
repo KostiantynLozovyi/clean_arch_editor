@@ -1,10 +1,16 @@
-import { SerializedObjectDTO }     from '@application/dto/serialization/SerializedObjectDTO';
-import { SerializedTextBlockDTO }  from '@application/dto/serialization/SerializedTextBlockDTO';
-import { ImageBlock, TextBlock }   from '@domain/entities';
-import { SerializedImageBlockDTO } from '@application/dto/serialization/SerializedImageBlockDTO';
+import {
+	DraftBlock,
+	ImageBlock,
+	TextBlock
+} from '@domain/entities';
 
-import type { ColumnBlock }        from '@domain/aggregates/Column';
+import { SerializedDraftBlockDTO } from './SerializedDraftBlockDTO';
+import { SerializedImageBlockDTO } from './SerializedImageBlockDTO';
+import { SerializedObjectDTO }     from './SerializedObjectDTO';
+import { SerializedTextBlockDTO }  from './SerializedTextBlockDTO';
+
 import type { Column }             from '@domain/aggregates';
+import type { ColumnBlock }        from '@domain/aggregates/Column';
 
 export class SerializedColumnDTO extends SerializedObjectDTO {
 	constructor(column: Column) {
@@ -17,7 +23,7 @@ export class SerializedColumnDTO extends SerializedObjectDTO {
 
 	private getContent<T extends ColumnBlock | null>(block: T) {
 		if (!block) {
-			return null as any;
+			return null;
 		}
 
 		switch (true) {
@@ -27,6 +33,10 @@ export class SerializedColumnDTO extends SerializedObjectDTO {
 
 			case block instanceof ImageBlock: {
 				return new SerializedImageBlockDTO(block as ImageBlock);
+			}
+
+			case block instanceof DraftBlock: {
+				return new SerializedDraftBlockDTO(block as DraftBlock);
 			}
 
 			default: {

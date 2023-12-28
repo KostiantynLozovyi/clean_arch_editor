@@ -1,5 +1,5 @@
-import { SerializedRowDTO }    from '@application/dto/serialization/SerializedRowDTO';
-import { SerializedObjectDTO } from '@application/dto/serialization/SerializedObjectDTO';
+import { SerializedObjectDTO } from './SerializedObjectDTO';
+import { SerializedRowDTO }    from './SerializedRowDTO';
 
 import type { Page }           from '@domain/aggregates';
 
