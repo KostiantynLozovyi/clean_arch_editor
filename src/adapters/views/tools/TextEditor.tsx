@@ -1,4 +1,5 @@
 import { Icons }              from '@infrastructure/ui/icons';
+import { isColumn }           from '@adapters/views/utils/elementGuards';
 
 import { getLeafBlock }       from '../utils/elementSelector';
 import { useSelectedElement } from '../context/SelectedElementContext';
@@ -9,6 +10,10 @@ import type { TextBlock }     from '@domain/entities';
 function TextEditor() {
 	const { selectedElement }                      = useSelectedElement();
 	const { handleSetAlignment, handleTextChange } = useEditorHandler();
+
+	if (!isColumn(selectedElement)) {
+		return null;
+	}
 
 	const text = getLeafBlock<TextBlock>(selectedElement);
 

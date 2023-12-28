@@ -19,11 +19,11 @@ function ColumnEditor() {
 			</div>
 
 			<div className='button-group-field'>
-				<label>
+				<label htmlFor='contents'>
 					Contents
 				</label>
 
-				<div className='button-group'>
+				<div className='button-group' id='contents'>
 					<button
 						className={
 							isTextBlock(selectedElement?.getContent())

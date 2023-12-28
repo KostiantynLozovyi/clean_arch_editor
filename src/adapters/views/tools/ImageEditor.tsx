@@ -1,3 +1,5 @@
+import { isColumn }           from '@adapters/views/utils/elementGuards';
+
 import { getLeafBlock }       from '../utils/elementSelector';
 import { useSelectedElement } from '../context/SelectedElementContext';
 import { useEditorHandler }   from '../context/EditorHandlerContext';
@@ -7,6 +9,10 @@ import type { ImageBlock }    from '@domain/entities';
 function ImageEditor() {
 	const { handleSetImageUrl } = useEditorHandler();
 	const { selectedElement }   = useSelectedElement();
+
+	if (!isColumn(selectedElement)) {
+		return null;
+	}
 
 	const image = getLeafBlock<ImageBlock>(selectedElement);
 
