@@ -1,4 +1,4 @@
-let count = 0;
+let count = Date.now();
 
 export class IdGenerator {
 	generate(): number {
