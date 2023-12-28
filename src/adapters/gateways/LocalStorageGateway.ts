@@ -1,8 +1,8 @@
+import type { ElementStateRepository } from '@domain/interfaces/repository/ElementStateRepository';
 import type { Page }                   from '@domain/aggregates';
 import type { ElementSerializer }      from '@adapters/serializers/ElementSerializer';
-import type { ElementStateRepository } from '@domain/interfaces/repository/ElementStateRepository';
 
-export class LocalStorageAdapter implements ElementStateRepository {
+export class LocalStorageGateway implements ElementStateRepository {
 	constructor(private elementSerializer: ElementSerializer) {}
 
 	save(page: Page): void {
