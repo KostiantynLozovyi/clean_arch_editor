@@ -16,6 +16,7 @@ type SelectedElementContextType = {
 	selectedElement: Element<any> | null,
 	isSelectedElement(id: number): boolean,
 	handleSelectElement(id: number): () => void,
+	handleUnselectElement(): void,
 	setSelectedElementId(id: number | null): void
 };
 
@@ -57,15 +58,20 @@ const SelectedElementProvider = (
 		[ selectedElementId ]
 	);
 
+	const handleUnselectElement = useCallback(() => {
+		setSelectedElementId(null);
+	}, []);
+
 	const contextValue: SelectedElementContextType = useMemo(
 		() => ({
 			selectedElementId,
 			handleSelectElement,
 			setSelectedElementId,
 			selectedElement,
-			isSelectedElement
+			isSelectedElement,
+			handleUnselectElement
 		}),
-		[ isSelectedElement, selectedElement, selectedElementId ]
+		[ handleUnselectElement, isSelectedElement, selectedElement, selectedElementId ]
 	);
 
 	return (

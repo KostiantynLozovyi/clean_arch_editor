@@ -1,8 +1,9 @@
-import { Stage }        from '@infrastructure/ui/stage';
+import { Stage }              from '@infrastructure/ui/stage';
+import { useSelectedElement } from '@adapters/views/context/SelectedElementContext';
 
-import { RowComponent } from './Row';
+import { RowComponent }       from './Row';
 
-import type { Page }    from '@domain/aggregates';
+import type { Page }          from '@domain/aggregates';
 
 type PageComponentProps = {
 	page: Page
@@ -11,8 +12,10 @@ type PageComponentProps = {
 function PageComponent(props: Readonly<PageComponentProps>) {
 	const { page } = props;
 
+	const { handleUnselectElement } = useSelectedElement();
+
 	return (
-		<Stage>
+		<Stage onSelect={ handleUnselectElement }>
 			{ page.getContent().map((row: any) => (
 				<RowComponent key={ row.id } row={ row } />
 			)) }
