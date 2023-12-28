@@ -12,7 +12,7 @@ type ColumnComponentProps = {
 	col: ColumnType
 };
 
-function ColumnComponent(props: ColumnComponentProps) {
+function ColumnComponent(props: Readonly<ColumnComponentProps>) {
 	const { col } = props;
 
 	const { handleSelectElement, isSelectedElement } = useSelectedElement();

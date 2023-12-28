@@ -28,11 +28,11 @@ function TextEditor() {
 			</div>
 
 			<div className='button-group-field'>
-				<label>
+				<label htmlFor='alignment'>
 					Alignment
 				</label>
 
-				<div className='button-group'>
+				<div className='button-group' id='alignment'>
 					<button
 						className={
 							text.getContent().alignment === 'left'

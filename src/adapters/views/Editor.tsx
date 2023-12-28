@@ -6,7 +6,7 @@ type EditorProps = {
 	page: Page
 };
 
-function Editor({ page }: EditorProps) {
+function Editor({ page }: Readonly<EditorProps>) {
 	return <PageComponent page={ page } />;
 }
 

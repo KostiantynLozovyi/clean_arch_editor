@@ -8,7 +8,7 @@ type PageComponentProps = {
 	page: Page
 };
 
-function PageComponent(props: PageComponentProps) {
+function PageComponent(props: Readonly<PageComponentProps>) {
 	const { page } = props;
 
 	return (
