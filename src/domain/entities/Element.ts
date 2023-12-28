@@ -1,19 +1,20 @@
-import type { ElementKinds }   from '@domain/enums/ElementsKinds';
-import type { IdGenerator }    from '@utility/id/IdGenerator';
-import type { ElementVisitor } from '../interfaces/usecases/ElementVisitor';
+import type { ColumnChildKinds } from '@domain/enums/ColumnChildKinds';
+import type { ElementKinds }     from '@domain/enums/ElementsKinds';
+import type { IdGenerator }      from '@utility/id/IdGenerator';
+import type { ElementVisitor }   from '../interfaces/usecases/ElementVisitor';
 
 export abstract class Element<Content> {
 	protected id: number;
 	protected content!: Content;
 	protected parentId: number | null = null;
 
-	protected abstract readonly kind: ElementKinds;
+	protected abstract readonly kind: ElementKinds | ColumnChildKinds;
 
 	constructor(protected idGenerator: IdGenerator) {
 		this.id = idGenerator.generate();
 	}
 
-	getKind(): string {
+	getKind(): ElementKinds | ColumnChildKinds {
 		return this.kind;
 	}
 

@@ -1,5 +1,6 @@
 import { TextBlock, ImageBlock } from '@domain/entities';
 import { Column, Row }           from '@domain/aggregates';
+import { ColumnChildKinds }      from '@domain/enums/ColumnChildKinds';
 
 function isTextBlock(element: any): element is TextBlock {
 	return element instanceof TextBlock;
@@ -17,4 +18,8 @@ function isRow(element: any): element is Row {
 	return element instanceof Row;
 }
 
-export { isTextBlock, isImageBlock, isColumn, isRow };
+function isColumnChildKind(kind: any): kind is ColumnChildKinds {
+	return Object.values(ColumnChildKinds).includes(kind);
+}
+
+export { isTextBlock, isImageBlock, isColumn, isRow, isColumnChildKind };

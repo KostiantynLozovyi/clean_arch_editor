@@ -16,21 +16,21 @@ type SerializedObject = {
 } | null;
 
 export class SerializerVisitor implements ElementVisitor<SerializedObject> {
-	visitTextBlock(block: TextBlock): SerializedObject {
+	visitTextBlock(textBlock: TextBlock): SerializedObject {
 		return {
-			id      : block.getId(),
-			content : block.getContent(),
-			parentId: block.getParentId(),
-			__kind  : 'TextBlock'
+			id      : textBlock.getId(),
+			content : textBlock.getContent(),
+			parentId: textBlock.getParentId(),
+			__kind  : textBlock.getKind()
 		};
 	}
 
-	visitImageBlock(block: ImageBlock): SerializedObject {
+	visitImageBlock(imageBlock: ImageBlock): SerializedObject {
 		return {
-			id      : block.getId(),
-			content : block.getContent(),
-			parentId: block.getParentId(),
-			__kind  : 'ImageBlock'
+			id      : imageBlock.getId(),
+			content : imageBlock.getContent(),
+			parentId: imageBlock.getParentId(),
+			__kind  : imageBlock.getKind()
 		};
 	}
 
@@ -39,7 +39,7 @@ export class SerializerVisitor implements ElementVisitor<SerializedObject> {
 			id      : col.getId(),
 			content : this.visitLeafBlock(col.getContent()),
 			parentId: col.getParentId(),
-			__kind  : 'Column'
+			__kind  : col.getKind()
 		};
 	}
 
@@ -48,7 +48,7 @@ export class SerializerVisitor implements ElementVisitor<SerializedObject> {
 			id      : row.getId(),
 			content : row.getContent().map(col => this.visitColumn(col)),
 			parentId: row.getParentId(),
-			__kind  : 'Row'
+			__kind  : row.getKind()
 		};
 	}
 
@@ -57,7 +57,7 @@ export class SerializerVisitor implements ElementVisitor<SerializedObject> {
 			id      : page.getId(),
 			content : page.getContent().map(row => this.visitRow(row)),
 			parentId: null,
-			__kind  : 'Page'
+			__kind  : page.getKind()
 		};
 	}
 

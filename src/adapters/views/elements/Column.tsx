@@ -1,9 +1,8 @@
 import { Column }                     from '@infrastructure/ui/column';
+import { ColumnChildFactory }         from '@adapters/views/factories/ColumnChildFactory';
+import { isColumnChildKind }          from '@adapters/views/utils/elementGuards';
 
-import { isTextBlock }                from '../utils/elementGuards';
 import { useSelectedElement }         from '../context/SelectedElementContext';
-import { ImageBlockComponent }        from './ImageBlock';
-import { TextBlockComponent }         from './TextBlock';
 
 import type { TextBlock, ImageBlock } from '@domain/entities';
 import type { Column as ColumnType }  from '@domain/aggregates';
@@ -17,9 +16,13 @@ function ColumnComponent(props: Readonly<ColumnComponentProps>) {
 
 	const { handleSelectElement, isSelectedElement } = useSelectedElement();
 
-	const Content = isTextBlock(col.getContent())
-		? TextBlockComponent
-		: ImageBlockComponent;
+	const kindOfElement = col.getContent()?.getKind();
+
+	if (!kindOfElement || !isColumnChildKind(kindOfElement)) {
+		return null;
+	}
+
+	const Content = ColumnChildFactory(kindOfElement);
 
 	return (
 		<Column

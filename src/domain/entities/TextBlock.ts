@@ -1,4 +1,4 @@
-import { ElementKinds }        from '@domain/enums/ElementsKinds';
+import { ColumnChildKinds }    from '@domain/enums/ColumnChildKinds';
 
 import { Element }             from './Element';
 
@@ -11,7 +11,7 @@ export type TextContent = {
 };
 
 export class TextBlock extends Element<TextContent> {
-	protected readonly kind = ElementKinds.TextBlock;
+	protected readonly kind = ColumnChildKinds.TextBlock;
 
 	constructor(idGenerator: IdGenerator) {
 		super(idGenerator);
