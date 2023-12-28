@@ -10,7 +10,7 @@ import { EditorHandlerContextProvider }    from './context/EditorHandlerContext'
 import { ToolBar }                         from './ToolBar';
 import { Editor }                          from './Editor';
 
-import type { Page }                       from '@domain/entities';
+import type { Page }                       from '@domain/aggregates';
 
 const elementsRepository = new LocalStorageAdapter(new ElementSerializer());
 
@@ -21,10 +21,12 @@ function preparePage() {
 		return persistentPage;
 	}
 
-	const page      = new ElementFactory().createElement(ElementKinds.Page);
-	const row       = new ElementFactory().createElement(ElementKinds.Row);
-	const col       = new ElementFactory().createElement(ElementKinds.Column);
-	const textBlock = new ElementFactory().createElement(ElementKinds.TextBlock);
+	const elementFactory = new ElementFactory();
+
+	const page      = elementFactory.createElement(ElementKinds.Page);
+	const row       = elementFactory.createElement(ElementKinds.Row);
+	const col       = elementFactory.createElement(ElementKinds.Column);
+	const textBlock = elementFactory.createElement(ElementKinds.TextBlock);
 
 	textBlock.setContent({ text: '# Untitled', alignment: 'center' });
 	textBlock.setParentId(col.getId());
