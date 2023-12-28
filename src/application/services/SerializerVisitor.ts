@@ -1,83 +1,38 @@
-import { ImageBlock, TextBlock } from '@domain/entities';
+import {
+	SerializedTextBlockDTO,
+	SerializedImageBlockDTO,
+	SerializedColumnDTO,
+	SerializedRowDTO,
+	SerializedPageDTO
+} from '@application/dto/';
 
+import type { ImageBlock, TextBlock } from '@domain/entities';
+import type { SerializedObjectDTO }   from '@application/dto/';
 import type {
 	Column,
 	Page,
 	Row
 } from '@domain/aggregates';
-import type { ColumnBlock }    from '@domain/aggregates/Column';
 import type { ElementVisitor } from '@domain/interfaces/usecases/ElementVisitor';
 
-type SerializedObject = {
-	__kind: string,
-	id: number,
-	parentId?: number | null,
-	content: any
-} | null;
-
-export class SerializerVisitor implements ElementVisitor<SerializedObject> {
-	visitTextBlock(textBlock: TextBlock): SerializedObject {
-		return {
-			id      : textBlock.getId(),
-			content : textBlock.getContent(),
-			parentId: textBlock.getParentId(),
-			__kind  : textBlock.getKind()
-		};
+export class SerializerVisitor implements ElementVisitor<SerializedObjectDTO | null> {
+	visitTextBlock(textBlock: TextBlock): SerializedObjectDTO {
+		return new SerializedTextBlockDTO(textBlock);
 	}
 
-	visitImageBlock(imageBlock: ImageBlock): SerializedObject {
-		return {
-			id      : imageBlock.getId(),
-			content : imageBlock.getContent(),
-			parentId: imageBlock.getParentId(),
-			__kind  : imageBlock.getKind()
-		};
+	visitImageBlock(imageBlock: ImageBlock) {
+		return new SerializedImageBlockDTO(imageBlock);
 	}
 
-	visitColumn(col: Column): SerializedObject {
-		return {
-			id      : col.getId(),
-			content : this.visitLeafBlock(col.getContent()),
-			parentId: col.getParentId(),
-			__kind  : col.getKind()
-		};
+	visitColumn(col: Column) {
+		return new SerializedColumnDTO(col);
 	}
 
-	visitRow(row: Row): SerializedObject {
-		return {
-			id      : row.getId(),
-			content : row.getContent().map(col => this.visitColumn(col)),
-			parentId: row.getParentId(),
-			__kind  : row.getKind()
-		};
+	visitRow(row: Row) {
+		return new SerializedRowDTO(row);
 	}
 
-	visitPage(page: Page): SerializedObject {
-		return {
-			id      : page.getId(),
-			content : page.getContent().map(row => this.visitRow(row)),
-			parentId: null,
-			__kind  : page.getKind()
-		};
-	}
-
-	private visitLeafBlock<T extends ColumnBlock | null>(block: T): SerializedObject {
-		if (!block) {
-			return null as any;
-		}
-
-		switch (true) {
-			case block instanceof TextBlock: {
-				return this.visitTextBlock(block as TextBlock);
-			}
-
-			case block instanceof ImageBlock: {
-				return this.visitImageBlock(block as ImageBlock);
-			}
-
-			default: {
-				return null;
-			}
-		}
+	visitPage(page: Page) {
+		return new SerializedPageDTO(page);
 	}
 }
