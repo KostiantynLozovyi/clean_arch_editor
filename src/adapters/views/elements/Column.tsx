@@ -1,6 +1,6 @@
 import { Column }                     from '@infrastructure/ui/column';
 import { ColumnChildFactory }         from '@adapters/views/factories/ColumnChildFactory';
-import { isColumnChildKind }          from '@adapters/views/utils/elementGuards';
+import { ElementGuardService }        from '@application/services';
 
 import { useSelectedElement }         from '../context/SelectedElementContext';
 
@@ -18,7 +18,7 @@ function ColumnComponent(props: Readonly<ColumnComponentProps>) {
 
 	const kindOfElement = col.getContent()?.getKind();
 
-	if (!kindOfElement || !isColumnChildKind(kindOfElement)) {
+	if (!ElementGuardService.isColumnChildKind(kindOfElement)) {
 		return null;
 	}
 

@@ -6,10 +6,10 @@ import {
 	useState
 } from 'react';
 
-import type { Element }           from '@domain/entities';
-import type { Page }              from '@domain/aggregates';
-import type { ElementSearcher }   from '@application/services';
-import type { PropsWithChildren } from 'react';
+import type { Element }                from '@domain/entities';
+import type { Page }                   from '@domain/aggregates';
+import type { ElementSearcherService } from '@application/services';
+import type { PropsWithChildren }      from 'react';
 
 type SelectedElementContextType = {
 	selectedElementId: number | null,
@@ -23,7 +23,7 @@ type SelectedElementContextType = {
 const SelectedElementContext = createContext<SelectedElementContextType | null>(null);
 
 type SelectedElementProviderProps = {
-	searcher: ElementSearcher,
+	searcher: ElementSearcherService,
 	page: Page
 };
 

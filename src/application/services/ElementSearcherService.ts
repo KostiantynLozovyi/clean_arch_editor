@@ -1,6 +1,6 @@
 import type { Element } from '@domain/entities';
 
-export class ElementSearcher {
+export class ElementSearcherService {
 	findElementById<T extends Element<any>>(
 		root: Element<any>,
 		targetId?: number | null

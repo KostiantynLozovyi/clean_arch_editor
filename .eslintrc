@@ -78,6 +78,7 @@
 				"semi": false
 			}
 		],
+		"unicorn/no-static-only-class": 0,
 		"unicorn/prevent-abbreviations": [
 			2,
 			{
@@ -359,7 +360,7 @@
 				"@typescript-eslint/init-declarations": 2,
 				"@typescript-eslint/member-ordering": 2,
 				"@typescript-eslint/no-confusing-void-expression": 2,
-				"@typescript-eslint/no-extraneous-class": 2,
+				"@typescript-eslint/no-extraneous-class": 0,
 				"@typescript-eslint/no-floating-promises": 2,
 				"@typescript-eslint/no-unnecessary-type-arguments": 2,
 				"@typescript-eslint/no-empty-function": [

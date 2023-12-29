@@ -1,17 +1,17 @@
-import { Icons }              from '@infrastructure/ui/icons';
-import { isColumn }           from '@adapters/views/utils/elementGuards';
+import { Icons }               from '@infrastructure/ui/icons';
+import { ElementGuardService } from '@application/services';
 
-import { getLeafBlock }       from '../utils/elementSelector';
-import { useSelectedElement } from '../context/SelectedElementContext';
-import { useEditorHandler }   from '../context/EditorHandlerContext';
+import { getLeafBlock }        from '../utils/elementSelector';
+import { useSelectedElement }  from '../context/SelectedElementContext';
+import { useEditorHandler }    from '../context/EditorHandlerContext';
 
-import type { TextBlock }     from '@domain/entities';
+import type { TextBlock }      from '@domain/entities';
 
 function TextEditor() {
 	const { selectedElement }                      = useSelectedElement();
 	const { handleSetAlignment, handleTextChange } = useEditorHandler();
 
-	if (!isColumn(selectedElement)) {
+	if (!ElementGuardService.isColumn(selectedElement)) {
 		return null;
 	}
 

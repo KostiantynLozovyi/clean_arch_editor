@@ -8,7 +8,7 @@ import {
 	AddImageToColCommand,
 	AddDraftToColCommand
 } from '@application/interactors';
-import { isColumn }                   from '@adapters/views/utils/elementGuards';
+import { ElementGuardService }        from '@application/services';
 
 import type { ImageBlock, TextBlock } from '@domain/entities';
 import type {
@@ -16,7 +16,7 @@ import type {
 	Row,
 	Page
 } from '@domain/aggregates';
-import type { ElementSearcher }        from '@application/services';
+import type { ElementSearcherService } from '@application/services';
 import type { TextContent }            from '@domain/entities/TextBlock';
 import type { ElementStateRepository } from '@domain/interfaces/repository/ElementStateRepository';
 
@@ -30,7 +30,7 @@ export class EditorInvoker {
 
 	constructor(
 		private page: Page,
-		private searcher: ElementSearcher,
+		private searcher: ElementSearcherService,
 		private repository: ElementStateRepository,
 		private updateView: () => void
 	) {}
@@ -51,7 +51,7 @@ export class EditorInvoker {
 			return null;
 		}
 
-		const targetRow = isColumn(element)
+		const targetRow = ElementGuardService.isColumn(element)
 			? this.searcher.findElementById<Row>(this.page, element.getParentId())!
 			: element;
 
