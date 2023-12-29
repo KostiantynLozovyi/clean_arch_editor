@@ -1,7 +1,7 @@
 import { useState }                     from 'react';
 
 import { LocalStorageGateway }          from '@adapters/gateways/LocalStorageGateway';
-import { ElementSearcher }              from '@application/services';
+import { ElementSearcherService }       from '@application/services';
 import { ElementKinds }                 from '@domain/enums/ElementsKinds';
 import { ElementSerializer }            from '@adapters/serializers/ElementSerializer';
 import { ElementFactory }               from '@domain/factories';
@@ -44,7 +44,7 @@ function preparePage() {
 }
 
 const page     = preparePage();
-const searcher = new ElementSearcher();
+const searcher = new ElementSearcherService();
 
 function App() {
 	const [ appState, setAppState ] = useState<Page>(page);

@@ -12,7 +12,6 @@ import { IdGenerator }                            from '@utility/id/IdGenerator'
 
 import type { ElementKinds }                      from '@domain/enums/ElementsKinds';
 import type { ElementFactory as IElementFactory } from '@domain/factories/ElementFactory.interface';
-import type { Element }                           from '@domain/entities/Element';
 
 type ElementMap<T extends ElementKinds> = {
 	Column: Column,
@@ -24,41 +23,23 @@ type ElementMap<T extends ElementKinds> = {
 }[T];
 
 export class ElementFactory implements IElementFactory {
+	static ElementsMap = {
+		Column,
+		Row,
+		Page,
+		TextBlock,
+		ImageBlock,
+		DraftBlock
+	};
+
 	createElement<T extends ElementKinds>(kind: T): ElementMap<T> {
-		const idGenerator                = new IdGenerator();
-		let element: Element<any> | null = null;
+		const idGenerator        = new IdGenerator();
+		const ElementConstructor = ElementFactory.ElementsMap[kind];
 
-		switch (kind) {
-			case 'TextBlock': {
-				element = new TextBlock(idGenerator);
-				break;
-			}
-			case 'ImageBlock': {
-				element = new ImageBlock(idGenerator);
-				break;
-			}
-			case 'Column': {
-				element = new Column(idGenerator);
-				break;
-			}
-			case 'Row': {
-				element = new Row(idGenerator);
-				break;
-			}
-			case 'Page': {
-				element = new Page(idGenerator);
-				break;
-			}
-			case 'DraftBlock': {
-				element = new DraftBlock(idGenerator);
-				break;
-			}
-
-			default: {
-				throw new Error(`Unknown kind: ${ kind }`);
-			}
+		if (!ElementConstructor) {
+			throw new Error(`Element of kind ${ kind } is not supported`);
 		}
 
-		return element as ElementMap<T>;
+		return new ElementConstructor(idGenerator) as ElementMap<T>;
 	}
 }

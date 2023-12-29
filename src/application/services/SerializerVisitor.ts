@@ -25,7 +25,7 @@ export class SerializerVisitor implements ElementVisitor<SerializedObjectDTO | n
 		return new SerializedDraftBlockDTO(draftBlock);
 	}
 
-	visitTextBlock(textBlock: TextBlock): SerializedObjectDTO {
+	visitTextBlock(textBlock: TextBlock) {
 		return new SerializedTextBlockDTO(textBlock);
 	}
 

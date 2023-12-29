@@ -1,16 +1,16 @@
-import { isColumn }           from '@adapters/views/utils/elementGuards';
+import { ElementGuardService } from '@application/services';
 
-import { getLeafBlock }       from '../utils/elementSelector';
-import { useSelectedElement } from '../context/SelectedElementContext';
-import { useEditorHandler }   from '../context/EditorHandlerContext';
+import { getLeafBlock }        from '../utils/elementSelector';
+import { useSelectedElement }  from '../context/SelectedElementContext';
+import { useEditorHandler }    from '../context/EditorHandlerContext';
 
-import type { ImageBlock }    from '@domain/entities';
+import type { ImageBlock }     from '@domain/entities';
 
 function ImageEditor() {
 	const { handleSetImageUrl } = useEditorHandler();
 	const { selectedElement }   = useSelectedElement();
 
-	if (!isColumn(selectedElement)) {
+	if (!ElementGuardService.isColumn(selectedElement)) {
 		return null;
 	}
 

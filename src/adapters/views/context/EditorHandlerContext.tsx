@@ -12,7 +12,7 @@ import type {
 	ChangeEventHandler,
 	PropsWithChildren
 } from 'react';
-import type { ElementSearcher }        from '@application/services';
+import type { ElementSearcherService } from '@application/services';
 import type { Page }                   from '@domain/aggregates';
 import type { ElementStateRepository } from '@domain/interfaces/repository/ElementStateRepository';
 
@@ -29,7 +29,7 @@ type EditorHandlerContextType = {
 
 type EditorHandlerContextProviderProps = {
 	page: Page,
-	searcher: ElementSearcher,
+	searcher: ElementSearcherService,
 	elementsRepository: ElementStateRepository,
 	updateAppState(page: Page): void
 };

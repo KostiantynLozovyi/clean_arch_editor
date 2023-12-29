@@ -1,8 +1,8 @@
-import { Icons }                     from '@infrastructure/ui/icons';
+import { Icons }               from '@infrastructure/ui/icons';
+import { ElementGuardService } from '@application/services';
 
-import { useEditorHandler }          from '../context/EditorHandlerContext';
-import { useSelectedElement }        from '../context/SelectedElementContext';
-import { isImageBlock, isTextBlock } from '../utils/elementGuards';
+import { useEditorHandler }    from '../context/EditorHandlerContext';
+import { useSelectedElement }  from '../context/SelectedElementContext';
 
 function ColumnEditor() {
 	const { setRowType }                         = useEditorHandler();
@@ -26,7 +26,7 @@ function ColumnEditor() {
 				<div className='button-group' id='contents'>
 					<button
 						className={
-							isTextBlock(selectedElement?.getContent())
+							ElementGuardService.isTextBlock(selectedElement?.getContent())
 								? 'selected'
 								: ''
 						}
@@ -39,7 +39,9 @@ function ColumnEditor() {
 
 					<button
 						className={
-							isImageBlock(selectedElement?.getContent())
+							ElementGuardService.isImageBlock(
+								selectedElement?.getContent()
+							)
 								? 'selected'
 								: ''
 						}
